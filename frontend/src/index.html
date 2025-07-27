@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gerador de API Falsa</title>
+        <link rel="stylesheet" href="global.css" />
+    </head>
+    <body class="min-h-screen p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-white tracking-tight">Gerador de API Falsa</h1>
+            <p class="text-lg text-gray-400 mt-1">Crie e sirva endpoints de API para seus projetos com um clique.</p>
+        </header>
+
+        <div
+            class="bg-gray-900/50 ring-1 ring-white/10 rounded-xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+            <div
+                id="server-status"
+                class="w-full sm:w-auto flex-grow text-center sm:text-left text-lg font-semibold py-2 px-4 rounded-lg transition-colors duration-300"
+            >
+                Servidor parado
+            </div>
+            <div class="flex items-center space-x-3">
+                <label for="port" class="text-gray-300 font-medium">Porta:</label>
+                <input id="port" type="text" value="8080" class="form-element w-24 text-center p-2" />
+                <button id="start-server" class="btn btn-primary">
+                    <i data-lucide="play" class="w-5 h-5 mr-2"></i> Iniciar
+                </button>
+                <button id="stop-server" class="btn btn-danger">
+                    <i data-lucide="pause" class="w-5 h-5 mr-2"></i>
+                    Parar
+                </button>
+            </div>
+        </div>
+
+        <main class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <div class="lg:col-span-2 bg-gray-900/50 ring-1 ring-white/10 rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4">Adicionar Novo Endpoint</h2>
+                <form id="add-endpoint-form" class="space-y-5">
+                    <div class="relative">
+                        <select
+                            id="method"
+                            class="form-element block w-full appearance-none pr-8 py-2 px-3 border rounded-md"
+                        >
+                            <option>GET</option>
+                            <option>POST</option>
+                            <option>PUT</option>
+                            <option>DELETE</option>
+                        </select>
+                        <i
+                            data-lucide="chevron-down"
+                            class="absolute inset-y-0 top-4 right-4 w-5 h-5 text-gray-400 pointer-events-none"
+                        ></i>
+                    </div>
+                    <div>
+                        <label for="path" class="block text-sm font-medium text-gray-300 mb-2"
+                            >Caminho do Endpoint</label
+                        >
+                        <input id="path" type="text" class="form-element w-full" placeholder="/api/users" required />
+                    </div>
+                    <div>
+                        <label for="response" class="block text-sm font-medium text-gray-300 mb-2"
+                            >Corpo da Resposta (JSON)</label
+                        >
+                        <textarea
+                            id="response"
+                            rows="12"
+                            class="form-element w-full font-mono text-sm"
+                            placeholder='{ "message": "Sucesso!" }'
+                            required
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full !mt-6">Adicionar Endpoint</button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-3 bg-gray-900/50 ring-1 ring-white/10 rounded-xl p-6">
+                <h2 class="text-xl font-bold mb-4">Endpoints Ativos</h2>
+                <div id="endpoint-list" class="space-y-3 max-h-[65vh] overflow-y-auto pr-2">
+                    <div class="text-center py-10 text-gray-400">
+                        <p>Nenhum endpoint configurado.</p>
+                        <p class="text-sm">Use o formulário ao lado para começar.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Popup de Erro -->
+        <div id="toast-container" class="fixed top-4 right-4 z-50 w-full max-w-sm space-y-3">
+            <!-- Toasts de erro serão injetados aqui pelo JavaScript -->
+        </div>
+        <script src="/wails/runtime.js"></script>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
