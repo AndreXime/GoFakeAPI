@@ -22,9 +22,6 @@ body {
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10+ e Edge */
-    user-select: none; /* Padrão */
 }
 
 .form-element {

@@ -26,5 +26,5 @@ export default function showMessage(message: string) {
         toast.addEventListener('animationend', () => toast.remove());
     };
     toast.querySelector('.close-toast-btn')?.addEventListener('click', removeToast);
-    setTimeout(removeToast, 5000);
+    setTimeout(removeToast, 10000);
 }

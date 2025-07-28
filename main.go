@@ -3,7 +3,7 @@ package main
 import (
 	"embed"
 
-	"GoFakeAPI/backend"
+	"api-mockup/backend"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -17,14 +17,14 @@ func main() {
 	app := backend.NewApp()
 
 	err := wails.Run(&options.App{
-		Title:  "GoFakeAPI",
-		Width:  1024,
-		Height: 768,
+		Title:            "API Mockup",
+		WindowStartState: options.Maximised,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
+		BackgroundColour: &options.RGBA{R: 17, G: 24, B: 39, A: 255},
 		OnStartup:        app.Startup,
+		OnDomReady:       app.DomReady,
 		OnShutdown:       app.Shutdown,
 		Bind: []any{
 			app,

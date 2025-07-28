@@ -1,27 +1,23 @@
 import { renderEndpoints } from './ui';
-import showMessage from './popup';
 
 export async function loadEndpoints() {
-    try {
-        const endpoints = await window.go.main.App.GetEndpoints();
-        renderEndpoints(endpoints);
-    } catch {
-        showMessage('Não foi possível carregar os endpoints.');
-    }
+    const endpoints = await window.go.backend.App.GetEndpoints();
+
+    renderEndpoints(endpoints);
 }
 
 export async function addEndpoint(method: string, path: string, response: string, requiresAuth: boolean) {
-    await window.go.main.App.AddEndpoint(method, path, response, requiresAuth);
+    await window.go.backend.App.AddEndpoint(method, path, response, requiresAuth);
 }
 
 export async function removeEndpoint(id: string) {
-    await window.go.main.App.RemoveEndpoint(id);
+    await window.go.backend.App.RemoveEndpoint(id);
 }
 
 export async function startServer(port: string) {
-    await window.go.main.App.StartServer(port);
+    await window.go.backend.App.StartServer(port);
 }
 
 export async function stopServer() {
-    await window.go.main.App.StopServer();
+    await window.go.backend.App.StopServer();
 }

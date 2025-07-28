@@ -1,4 +1,4 @@
-module GoFakeAPI
+module api-mockup
 
 go 1.23
 

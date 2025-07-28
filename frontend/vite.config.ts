@@ -4,18 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
     plugins: [tailwindcss()],
     root: 'src',
-
     build: {
         outDir: '../dist',
-
         emptyOutDir: true,
-
-        rollupOptions: {
-            output: {
-                entryFileNames: `[name].js`,
-                chunkFileNames: `[name].js`,
-                assetFileNames: `[name].[ext]`,
-            },
-        },
+        target: 'esnext', // evita builds legacy
+        sourcemap: false, // acelera build e reduz artefatos
+        minify: 'esbuild',
     },
 });

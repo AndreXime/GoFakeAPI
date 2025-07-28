@@ -12,7 +12,7 @@ declare global {
     interface Window {
         // Funções expostas do backend Go
         go: {
-            main: {
+            backend: {
                 App: {
                     GetEndpoints(): Promise<Endpoint[]>;
                     AddEndpoint(
@@ -29,6 +29,8 @@ declare global {
         };
         // Funções do runtime do Wails para eventos
         runtime: {
+            WindowMaximise(): unknown;
+            WindowShow(): unknown;
             EventsOn(eventName: string, callback: (...data: any[]) => void): void;
             EventsEmit(eventName: string, ...data: any[]): void;
         };

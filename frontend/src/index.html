@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gerador de API Falsa</title>
-        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="/css/global.css" />
     </head>
     <body class="min-h-screen p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
         <header class="mb-8">
@@ -72,15 +72,26 @@
                         ></textarea>
                     </div>
                     <!-- Checkbox de Autenticação -->
-                    <div class="flex items-center">
+                    <div class="relative flex items-center group">
+                        <div
+                            class="absolute -top-34 left-1/2 -translate-x-1/2 hidden w-max rounded bg-gray-800 px-3 py-2 text-sm text-white group-hover:block z-10 shadow-lg"
+                        >
+                            <h4 class="font-semibold text-gray-200 flex items-center">
+                                <i data-lucide="key-round" class="w-4 h-4 mr-2 text-amber-400"></i>Dica de Autenticação
+                            </h4>
+                            <p class="mt-2 whitespace-nowrap">Existe uma rota fixa para ter o token:</p>
+                            <p class="mt-2 whitespace-nowrap">POST /auth/login</p>
+                            <p class="mt-2 whitespace-nowrap">Authorization: Bearer fake-jwt-token</p>
+                        </div>
+
                         <input
                             id="requires-auth"
                             type="checkbox"
                             class="h-4 w-4 rounded border-gray-600 bg-gray-700 text-blue-500 focus:ring-blue-600"
                         />
-                        <label for="requires-auth" class="ml-3 block text-sm font-medium text-gray-300"
-                            >Requer Autenticação</label
-                        >
+                        <label for="requires-auth" class="ml-3 block font-medium text-gray-300">
+                            Requer Autenticação
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary w-full !mt-6">Adicionar Endpoint</button>
                 </form>
@@ -99,7 +110,6 @@
             <!-- Toasts de erro serão injetados aqui pelo JavaScript -->
         </div>
 
-        <script src="/wails/runtime.js"></script>
-        <script type="module" src="ts/main.ts"></script>
+        <script type="module" src="/ts/main.ts"></script>
     </body>
 </html>

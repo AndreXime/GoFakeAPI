@@ -1,18 +1,18 @@
 import { loadEndpoints } from './api';
-import { refreshIcons, updateServerStatus } from './ui';
+import { updateServerStatus } from './ui';
 import { initHandlers } from './handlers';
 import { initEvents } from './events';
+import showMessage from './popup';
 
-function initialize() {
-    refreshIcons();
-    loadEndpoints();
+async function initialize() {
+    await loadEndpoints();
     updateServerStatus('Servidor parado', '', false);
     initHandlers();
     initEvents();
 }
 
-if (window.go) {
-    initialize();
-} else {
-    window.runtime.EventsOn('wails:ready', initialize);
+try {
+    await initialize();
+} catch (error) {
+    showMessage(error);
 }

@@ -4,6 +4,8 @@ import (
 	"context"
 	"net/http"
 	"sync"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 type App struct {
@@ -21,6 +23,11 @@ func NewApp() *App {
 
 func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
+}
+
+func (a *App) DomReady(ctx context.Context) {
+	runtime.WindowShow(ctx)
+	runtime.WindowMaximise(ctx)
 }
 
 func (a *App) Shutdown(ctx context.Context) {
