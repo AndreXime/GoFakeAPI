@@ -3,6 +3,8 @@ package main
 import (
 	"embed"
 
+	"GoFakeAPI/backend"
+
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
@@ -12,10 +14,8 @@ import (
 var assets embed.FS
 
 func main() {
-	// Cria uma instância da aplicação com a struct App
-	app := NewApp()
+	app := backend.NewApp()
 
-	// Cria a aplicação Wails com as opções
 	err := wails.Run(&options.App{
 		Title:  "GoFakeAPI",
 		Width:  1024,
@@ -24,8 +24,8 @@ func main() {
 			Assets: assets,
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup:        app.startup,
-		OnShutdown:       app.shutdown,
+		OnStartup:        app.Startup,
+		OnShutdown:       app.Shutdown,
 		Bind: []any{
 			app,
 		},
